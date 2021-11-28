@@ -7,6 +7,12 @@
     <Filter Include="Board">
       <UniqueIdentifier>{1554cc0a-fda4-4a72-a699-2012b6b00eda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Block">
+      <UniqueIdentifier>{99567515-bfdc-49c9-a00d-29cc55900561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{e60b8167-29c3-4689-b3e0-e2394b805561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TetrisGame.cpp">
@@ -21,6 +27,15 @@
     <ClCompile Include="Board.cpp">
       <Filter>Board</Filter>
     </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Block</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -34,6 +49,15 @@
     </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Block</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

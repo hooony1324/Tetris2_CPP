@@ -1,12 +1,12 @@
 ﻿#include "pch.h"
 #include "ConsoleHelper.h"
-
+#include "GameManager.h"
 #include "Board.h"
-Board board;
+
 
 int main()
 {
-    board.GenerateMap();
+    GameManager::instance().Init();
 
     uint64 lastTick = 0;
     while (true)
@@ -17,11 +17,8 @@ int main()
         lastTick = currentTick;
 #pragma endregion
 
-        // 입력
+        GameManager::instance().Update(deltaTick);
 
-        // 로직
-
-        // 렌더링
-        board.Render();
     }
 }
+

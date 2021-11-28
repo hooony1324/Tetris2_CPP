@@ -1,2 +1,3 @@
-﻿  TetrisGame.cpp
+﻿  GameManager.cpp
+C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\GameManager.cpp(19,15): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
   TetrisGame.vcxproj -> C:\Cogason\Tetris2_CPP\Tetris2_CPP\x64\Debug\TetrisGame.exe

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Types.h"
+#include <time.h>
 
 using namespace std;
 
