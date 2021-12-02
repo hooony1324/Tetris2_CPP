@@ -1,15 +1,13 @@
 ﻿#include "pch.h"
-#include "ConsoleHelper.h"
 #include "GameManager.h"
 #include "Board.h"
-
 
 int main()
 {
     GameManager::instance().Init();
 
     uint64 lastTick = 0;
-    while (true)
+    while (1)
     {
 #pragma region 프레임 관리
         const uint64 currentTick = ::GetTickCount64();
@@ -18,6 +16,7 @@ int main()
 #pragma endregion
 
         GameManager::instance().Update(deltaTick);
+
 
     }
 }

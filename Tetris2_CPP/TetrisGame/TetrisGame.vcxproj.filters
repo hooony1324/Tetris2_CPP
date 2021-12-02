@@ -13,6 +13,12 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{e60b8167-29c3-4689-b3e0-e2394b805561}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{d163ffd5-f64f-4732-83c8-e3931f39b431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zGarbage">
+      <UniqueIdentifier>{a7f8bb44-2884-4cb9-975d-25edf99c6745}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TetrisGame.cpp">
@@ -24,9 +30,6 @@
     <ClCompile Include="ConsoleHelper.cpp">
       <Filter>Board</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>Block</Filter>
     </ClCompile>
@@ -35,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>zGarbage</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,9 +56,6 @@
     <ClInclude Include="ConsoleHelper.h">
       <Filter>Board</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Board</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Block</Filter>
     </ClInclude>
@@ -58,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>zGarbage</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

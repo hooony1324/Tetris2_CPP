@@ -149,6 +149,7 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TetrisGame.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,16 +1,14 @@
 #include "pch.h"
 #include "GameManager.h"
-#include "Board.h"
-#include "InputHandler.h"
-#include "Block.h"
+#include "Screen.h"
+
 
 void GameManager::Init()
 {
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	_board = new Board();
-
-	_board->Init();
+	_screen = new Screen();
+	_screen->Init();
 }
 
 void GameManager::Update(uint64 deltaTick)
@@ -18,17 +16,12 @@ void GameManager::Update(uint64 deltaTick)
 	_sumTick += deltaTick;
 	if (_sumTick >= MOVE_TICK)
 	{
-		_sumTick = 0;
+		// 입력
 
+		// 로직
 
-		_board->UpdateMap();
-
-		_board->Render();
-
-	
-		_inputHandler->handleInput(_board);
-
-		_board->clear();
+		// 렌더
+		_screen->Render();
 	}
 }
 

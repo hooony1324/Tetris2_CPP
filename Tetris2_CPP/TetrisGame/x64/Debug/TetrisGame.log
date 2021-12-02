@@ -1,3 +1,6 @@
-﻿  GameManager.cpp
-C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\GameManager.cpp(19,15): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
+﻿  Screen.cpp
+C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\Screen.cpp(59,27): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\Screen.cpp(59,30): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\Screen.cpp(62,72): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Cogason\Tetris2_CPP\Tetris2_CPP\TetrisGame\Screen.cpp(94,67): warning C4267: '인수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   TetrisGame.vcxproj -> C:\Cogason\Tetris2_CPP\Tetris2_CPP\x64\Debug\TetrisGame.exe

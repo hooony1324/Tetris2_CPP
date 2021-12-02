@@ -1,81 +1,75 @@
 #pragma once
 
-typedef int(*arrPointer)[4];
+//0 0 0 0													
+//0 2 2 0				■ ■								
+//0 2 2 0      ->		■ ■									
+//0 0 0 0													 
+// 블럭 -> 맵의 빈 공간, 왼쪽 오른쪽의 벽, 타입 블록
 
-	// 여러가지 블럭 형태를 가짐
-	// Move(좌, 우, 아래)
-	// Move가능한지 확인하는 기능
-	// 보드에서의 좌표 성분
-enum class BlockType
-{
-	BT_O,
-	BT_J,
-	BT_L,
-	BT_S,
-	BT_Z,
-	BT_l,
-	BT_T,
-	BT_LENGTH
-};
+// < Render >
+// 왼쪽 오른쪽의 벽, WALL	: "■" <- 0  흰색
+// 빈 공간, VOID		: "  " <- 1 흰색
+
+// 블록	, BT_O...	: "■" <- 2, 색 있음 O, J, L, S, Z, l, T
+// 블록2 : BT_O
+// 블록3 : BT_J
+// 블록8 : BT_T
 
 class Block
 {	
 public:
 	Block();
+	~Block();
 
 	int _y = 0;
-	int _x = 4;	// Board의 가운데에서 생성
-	int _rotationState = 0;
-	int _state[4][4][4];
+	int _x = 0;
+	int _rotationState = 0;		// 0 ~ 3
+	int _blockType = 0; 
+	int _data[4][4][4];			// 블럭과 회전상태
 
-	void SetState_O();
-	void SetState_J();
-
-	// 회전 상태를 이미 적용한 2차원 상태 리턴
-	arrPointer GetBlock();
-
-	void Rotate();
-
-private:
-	BlockType _BT;
+	void SetType_VOID();
+	void SetType_O();
+	void SetType_J();
 
 };
 
-static const int block_O[4][4] =
-{
-	{2, 2, 2, 2},
-	{2, 3, 3, 2},
-	{2, 3, 3, 2},
-	{2, 2, 2, 2}
+static int BT_O[4][4][4] = {
+	{
+		{0, 0, 0, 0},
+		{0, 2, 2, 0},
+		{0, 2, 2, 0},
+		{0, 0, 0, 0}
+	},
 };
 
-static const int block_J[4][4][4] = {
+static int BT_J[4][4][4] = {
+
 	{
-		{2, 2, 3, 2},
-		{2, 2, 3, 2},
-		{2, 3, 3, 2},
-		{2, 2, 2, 2}
+		{0, 0, 3, 0},
+		{0, 0, 3, 0},
+		{0, 3, 3, 0},
+		{0, 0, 0, 0},
 	},
 
 	{
-		{2, 2, 2, 2},
-		{2, 3, 2, 2},
-		{2, 3, 3, 3},
-		{2, 2, 2, 2}
+		{0, 0, 0, 0},
+		{0, 3, 0, 0},
+		{0, 3, 3, 3},
+		{0, 0, 0, 0},
 	},
 
 	{
-		{2, 2, 2, 2},
-		{2, 3, 3, 2},
-		{2, 3, 2, 2},
-		{2, 3, 2, 2}
+		{0, 3, 3, 0},
+		{0, 3, 0, 0},
+		{0, 3, 0, 0},
+		{0, 0, 0, 0},
 	},
 
 	{
-		{2, 2, 2, 2},
-		{3, 3, 3, 2},
-		{2, 2, 3, 2},
-		{2, 2, 2, 2}
+		{0, 0, 0, 0},
+		{3, 3, 3, 0},
+		{0, 0, 3, 0},
+		{0, 0, 0, 0},
 	},
 
 };
