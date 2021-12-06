@@ -9,9 +9,6 @@
 #include <time.h>
 using namespace std;
 
-static int8 GAME_WIDTH = 18;
-static int8 GAME_HEIGHT = 20;
-
 // 블럭이 가지고 있는 위치정보
 struct Pos
 {

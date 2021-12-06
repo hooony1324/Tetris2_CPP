@@ -1,11 +1,15 @@
 #include "pch.h"
 #include "Block.h"
 
-Block::Block()
+Block::Block(int y, int x)
 {
+	// 블럭 생성 위치
+	_y = y;
+	_x = x;
+
 	// 타입은 2~8 랜덤 생성, 회전상태 0~3 랜덤
 	SetType_VOID();
-	_blockType = (int)(rand() % 7 + 2);
+	_blockType = (int)(rand() % 2 + 2);
 	_rotationState = (int)(rand() % 4);
 
 	// 블럭 타입 초기화
@@ -19,6 +23,9 @@ Block::Block()
 		break;
 	}
 
+	_blockData = new int* [4]();
+	for (int i = 0; i < 4; ++i)
+		_blockData[i] = new int[4]();
 }
 
 Block::~Block()
@@ -60,4 +67,17 @@ void Block::SetType_J()
 				_data[r][y][x] = BT_J[r][y][x];
 		}
 	}
+}
+
+int** Block::getBlockData()
+{
+	for (int y = 0; y < 4; ++y)
+	{
+		for (int x = 0; x < 4; ++x)
+		{
+			_blockData[y][x] = _data[_rotationState][y][x];
+		}
+	}
+
+	return _blockData;
 }

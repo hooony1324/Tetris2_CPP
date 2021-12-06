@@ -1,6 +1,5 @@
 #pragma once
 
-class Board;
 
 // Board출력, 사용자 입력,
 class Screen
@@ -9,6 +8,7 @@ public:
 	Screen();
 	~Screen();
 	void Init();
+	void Update(uint64 Tick);
 
 private:
 	void Swap();
@@ -16,7 +16,7 @@ private:
 
 public:
 	void Print(int x, int y, char* string);
-	void UpdateBoard();
+	void UpdateNextScreen();
 	void Render();
 
 /*** 멤버 ***/
@@ -35,6 +35,9 @@ public:
 
 // BOARD CONTROL
 private:
-	Board*			_board;
+	class Board*			_board;
+	class InputHandler*		_hInput;
+	uint64					_downSpeed = 1000;
+	uint64					_sumTick = 0;
 };
 

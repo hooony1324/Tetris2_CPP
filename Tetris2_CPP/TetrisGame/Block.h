@@ -18,7 +18,7 @@
 class Block
 {	
 public:
-	Block();
+	Block(int y, int x);
 	~Block();
 
 	int _y = 0;
@@ -31,6 +31,8 @@ public:
 	void SetType_O();
 	void SetType_J();
 
+	int** getBlockData();
+	int** _blockData;
 };
 
 static int BT_O[4][4][4] = {

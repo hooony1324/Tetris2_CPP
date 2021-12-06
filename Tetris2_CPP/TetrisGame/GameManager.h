@@ -16,7 +16,7 @@ private:
 
 
 private:
-	int64				MOVE_TICK = 1000;
+	int64				MOVE_TICK = 100;
 	uint64				_sumTick = 0;
 	class Screen*		_screen;
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Screen.h"
 #include "Board.h"
+#include "InputHandler.h"
 
 Screen::Screen()
 {
@@ -11,7 +12,7 @@ Screen::Screen()
 
 	// BOARD CONTROLL
 	_board = new Board();
-
+	_hInput = new InputHandler();
 }
 
 Screen::~Screen()
@@ -39,6 +40,24 @@ void Screen::Init()
 
 	// BOARD CONTROL
 	_board->Init();
+	_hInput->Init(_board);
+}
+
+void Screen::Update(uint64 Tick)
+{
+	_sumTick += Tick;
+	// 사용자 입력
+	_hInput->handleInput();
+
+	if (_sumTick >= _downSpeed)
+	{
+		_board->MoveBlockDown();
+		_sumTick = 0;
+	}
+
+	// 보드 정보 업데이트
+	_board->Update();
+
 }
 
 void Screen::Swap()
@@ -62,18 +81,17 @@ void Screen::Print(int x, int y, char* string)
 	WriteFile(_hScreen[_screenIndex], string, strlen(string), &dword, NULL);
 }
 
-void Screen::UpdateBoard()
+// 보드의 내용을 다음 버퍼에 저장하는 기능
+void Screen::UpdateNextScreen()
 {
 	COORD CursorPosition = { 0, 0 };
 	DWORD dword;
 	
 	int height = _board->_height;
 	int width = _board->_width;
-
-	// char* buf; // "■", "  ", 는 2바이트
-
-	int** boardData = _board->getData();
+	int** boardData = _board->getBoardData();
 	
+	// board의 data(int)를 버퍼에 복사하기 위해 char로 변경함
 	for (int y = 0; y < height; ++y)
 	{
 		string strData;
@@ -84,6 +102,8 @@ void Screen::UpdateBoard()
 				strData += "■";
 			else if (data == 1)
 				strData += "  ";
+			else
+				strData += "■";
 		}
 		char* buf = new char[strData.size() + 1];
 		copy(strData.begin(), strData.end(), buf);
@@ -93,9 +113,6 @@ void Screen::UpdateBoard()
 		SetConsoleCursorPosition(_hScreen[_screenIndex], CursorPosition);
 		WriteFile(_hScreen[_screenIndex], buf, strlen(buf), &dword, NULL);
 	}
-
-	// _board의 boardData 에 접근하여 숫자를 문자로 변환
-	// 바뀐 문자를 buf에 넣음(21 x 20) + 마지막'\0'
 
 }
 
@@ -124,7 +141,7 @@ void Screen::Render()
 	Print(44, 1, _FPSTextInfo);
 	Print(44, 2, _FPSTextInfo);
 	Print(44, 3, _FPSTextInfo);
-	UpdateBoard();
+	UpdateNextScreen();
 
 	// 버퍼 교체(더블 버퍼링)
 	Swap();

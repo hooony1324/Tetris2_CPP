@@ -16,12 +16,12 @@ void GameManager::Update(uint64 deltaTick)
 	_sumTick += deltaTick;
 	if (_sumTick >= MOVE_TICK)
 	{
-		// 입력
-
-		// 로직
+		_screen->Update(_sumTick);
 
 		// 렌더
 		_screen->Render();
+
+		_sumTick = 0;
 	}
 }
 

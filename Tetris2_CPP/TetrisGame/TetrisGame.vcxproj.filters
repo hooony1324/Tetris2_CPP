@@ -39,11 +39,11 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>zGarbage</Filter>
-    </ClCompile>
     <ClCompile Include="Screen.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,11 +65,11 @@
     <ClInclude Include="GameManager.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>zGarbage</Filter>
-    </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Board</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
