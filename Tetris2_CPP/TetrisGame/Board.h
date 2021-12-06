@@ -37,12 +37,13 @@ public:
 public:
 	void InstantiateBlock(int y, int x);
 
-	bool CheckBlock(int leftright, int updown);
+	bool CheckBlock(int leftright, int updown, bool rotate);
 	void RemoveCurBlock();
 	void SetCurBlock();
 	void MoveBlockLeft();
 	void MoveBlockRight();
 	void MoveBlockDown();
+	void RotateBlock();
 
 private:
 	Block*		_currentBlock;

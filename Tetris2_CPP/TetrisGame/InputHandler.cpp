@@ -45,4 +45,13 @@ void InputHandler::handleInput()
 
 	}
 
+	else if (GetAsyncKeyState(VK_SPACE))
+	{
+
+		// 아래로 이동 + 노멀 스텝 기능 이용
+		_board->RotateBlock();
+
+	}
+
+
 }

@@ -21,18 +21,22 @@ public:
 	Block(int y, int x);
 	~Block();
 
-	int _y = 0;
-	int _x = 0;
-	int _rotationState = 0;		// 0 ~ 3
-	int _blockType = 0; 
-	int _data[4][4][4];			// 블럭과 회전상태
+	int		_y = 0;
+	int		_x = 0;
+	uint64	_rotationState = 0;		// 0 ~ 3
+	int		_blockType = 0; 
+	int		_data[4][4][4];			// 블럭과 회전상태
 
 	void SetType_VOID();
 	void SetType_O();
 	void SetType_J();
+	void SetType_L();
 
 	int** getBlockData();
 	int** _blockData;
+
+	void RotateBlockDataClock();
+	void RotateBlockDataCounterClock();
 };
 
 static int BT_O[4][4][4] = {
@@ -73,5 +77,37 @@ static int BT_J[4][4][4] = {
 		{0, 0, 3, 0},
 		{0, 0, 0, 0},
 	},
+
+};
+
+static int BT_L[4][4][4] = {
+
+	{
+		{0, 4, 0, 0},
+		{0, 4, 0, 0},
+		{0, 4, 4, 0},
+		{0, 0, 0, 0},
+	},
+
+	{
+		{0, 0, 0, 0},
+		{0, 4, 4, 4},
+		{0, 4, 0, 0},
+		{0, 0, 0, 0},
+	},
+
+	{
+		{0, 0, 0, 0},
+		{0, 4, 4, 0},
+		{0, 0, 4, 0},
+		{0, 0, 4, 0},
+	},
+
+	{
+		{0, 0, 0, 0},
+		{0, 0, 4, 0},
+		{4, 4, 4, 0},
+		{0, 0, 0, 0},
+	}
 
 };

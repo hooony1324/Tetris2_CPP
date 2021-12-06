@@ -55,28 +55,33 @@ void Board::InstantiateBlock(int y, int x)
 	_currentBlock = new Block(y, x); // 0 4 -> 보드의 중상단
 	_currentBlockData = _currentBlock->getBlockData();
 
-	if (!CheckBlock(0, 0))
-		return; //gameover
 }
 
-bool Board::CheckBlock(int leftright, int updown)
+bool Board::CheckBlock(int leftright, int updown, bool rotate)
 {
 	// 왼쪽 x : -1, y : 0			0 0 0 0 <O블럭, currentBlockData>
 	// 오른쪽 x : +1, y : 0			0 2 2 0
 	// 아래 : x : 0, y : +1			0 2 2 0
 	//								0 0 0 0
-	RemoveCurBlock();
+	RemoveCurBlock(); // board에 있는 curblock만 제거, curblock자체 정보는 존재
+
+	if (rotate)
+	{
+		_currentBlock->RotateBlockDataClock();
+	}
+
+	_currentBlockData = _currentBlock->getBlockData();
 
 	bool result = true;
 	int curBlock_x = _currentBlock->_x;
 	int curBlock_y = _currentBlock->_y;
 
 	int next_x = curBlock_x + leftright;
-	int next_y = curBlock_y + updown; 
+	int next_y = curBlock_y + updown;
 
 	if (next_x < 0 || next_y < 0 || next_x > 10 || next_y > 17)
 		return false;
-
+	
 	for (int y = 0; y < 4; ++y)
 	{
 		for (int x = 0; x < 4; ++x)
@@ -87,8 +92,7 @@ bool Board::CheckBlock(int leftright, int updown)
 			// _boardData 의 빈 공간 원소는 1 
 			if (_boardData[next_y + y][next_x + x] != 1)
 			{
-				result = false;
-				break;
+				return false;
 			}
 		}
 	}
@@ -98,6 +102,7 @@ bool Board::CheckBlock(int leftright, int updown)
 
 void Board::RemoveCurBlock()
 {
+	_currentBlockData = _currentBlock->getBlockData();
 	int curBlock_x = _currentBlock->_x;
 	int curBlock_y = _currentBlock->_y;
 
@@ -118,6 +123,7 @@ void Board::RemoveCurBlock()
 void Board::SetCurBlock()
 {
 	// currBlock을 Board에 입력
+	_currentBlockData = _currentBlock->getBlockData();
 	int curBlock_x = _currentBlock->_x;
 	int curBlock_y = _currentBlock->_y;
 	for (int y = 0; y < 4; ++y)
@@ -137,7 +143,7 @@ void Board::MoveBlockLeft()
 		return;
 
 	// 왼쪽으로 옮길 수 있는지 확인
-	if (!CheckBlock(-1, 0))
+	if (!CheckBlock(-1, 0, 0))
 		return;
 
 	// curBlock의 위치 갱신
@@ -151,7 +157,7 @@ void Board::MoveBlockRight()
 		return;
 
 	// 오른쪽으로 옮길 수 있는지 확인
-	if (!CheckBlock(1, 0))
+	if (!CheckBlock(1, 0, 0))
 		return;
 
 	// curBlock의 위치 갱신
@@ -164,7 +170,7 @@ void Board::MoveBlockDown()
 		return;
 
 	// 아래로 옮길 수 있는지 확인
-	if (!CheckBlock(0, 1))
+	if (!CheckBlock(0, 1, 0))
 	{
 		SetCurBlock();
 		_currentBlock = nullptr;
@@ -173,6 +179,21 @@ void Board::MoveBlockDown()
 
 	// curBlock의 위치 갱신
 	++_currentBlock->_y;
+}
+
+void Board::RotateBlock()
+{
+	if (!_currentBlock)
+		return;
+
+	// 회전 할 수 있는지 확인
+	if (!CheckBlock(0, 0, 1))
+	{
+		_currentBlock->RotateBlockDataCounterClock();
+		RemoveCurBlock();
+		return;
+	}
+
 }
 
 
