@@ -7,6 +7,7 @@
 #include <vector>
 #include "Types.h"
 #include <time.h>
+#include <queue>
 using namespace std;
 
 // 블럭이 가지고 있는 위치정보

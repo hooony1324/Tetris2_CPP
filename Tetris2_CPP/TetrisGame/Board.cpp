@@ -52,6 +52,9 @@ int** Board::getBoardData()
 
 void Board::InstantiateBlock(int y, int x)
 {
+	// 게임 로직
+	CheckLineComplete();
+
 	_currentBlock = new Block(y, x); // 0 4 -> 보드의 중상단
 	_currentBlockData = _currentBlock->getBlockData();
 
@@ -79,7 +82,7 @@ bool Board::CheckBlock(int leftright, int updown, bool rotate)
 	int next_x = curBlock_x + leftright;
 	int next_y = curBlock_y + updown;
 
-	if (next_x < 0 || next_y < 0 || next_x > 10 || next_y > 17)
+	if (next_x < 0 || next_y < 0 || next_x > 10 || next_y > 19)
 		return false;
 	
 	for (int y = 0; y < 4; ++y)
@@ -194,6 +197,56 @@ void Board::RotateBlock()
 		return;
 	}
 
+}
+
+void Board::CheckLineComplete()
+{
+	bool complete = false;
+	queue<int> q;
+
+	for (int y = 19; y >= 0; --y)
+	{
+		int cnt = 0;
+		for (int x = 1; x < 11; ++x)
+		{
+			if (_boardData[y][x] != 1)
+				++cnt;
+		}
+
+		if (cnt == 10)
+		{
+			q.push(y);
+		}
+	}
+
+	while(!q.empty())
+	{
+		int row = q.front();
+		q.pop();
+		EraseLine(row);
+	}
+}
+
+void Board::EraseLine(int row)
+{
+	// 라인 지우기
+	for (int x = 1; x < 11; ++x)
+	{
+		_boardData[row][x] = 1;
+	}
+
+	// 데이터 밑으로 당기기
+	for (int y = row-1; y >= 0; --y)
+	{
+		for (int x = 1; x < 11; ++x)
+		{
+			if (_boardData[y + 1][x] == 1)
+			{
+				_boardData[y + 1][x] = _boardData[y][x];
+				_boardData[y][x] = 1;
+			}
+		}
+	}
 }
 
 

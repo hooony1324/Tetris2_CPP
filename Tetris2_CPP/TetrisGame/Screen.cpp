@@ -45,6 +45,16 @@ void Screen::Init()
 
 void Screen::Update(uint64 Tick)
 {
+	if (_clearGame)
+	{
+		// 안내
+		char ch[] = "게임종료게임종료게임종료게임종료";
+		
+		Print(0, 10, ch);
+		// 종료
+		return;
+	}
+
 	_sumTick += Tick;
 	// 사용자 입력
 	_hInput->handleInput();

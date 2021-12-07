@@ -49,6 +49,15 @@ private:
 	Block*		_currentBlock;
 	int**		_currentBlockData;
 	Block*		_nextBlock;
+
+/***********************
+	게임 로직
+************************/
+public:
+
+	void CheckLineComplete();
+	void EraseLine(int row);
+
 };
 
 

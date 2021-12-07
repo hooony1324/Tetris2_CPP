@@ -39,5 +39,12 @@ private:
 	class InputHandler*		_hInput;
 	uint64					_downSpeed = 1000;
 	uint64					_sumTick = 0;
+
+
+/***********************
+	게임 로직
+************************/
+private:
+	bool		_clearGame = false;
 };
 
