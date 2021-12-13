@@ -56,7 +56,7 @@ private:
 public:
 
 	void CheckLineComplete();
-	void EraseLine(int row);
+	void EraseLine(int start, int end);
 
 };
 

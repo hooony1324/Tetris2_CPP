@@ -52,7 +52,7 @@ int** Board::getBoardData()
 
 void Board::InstantiateBlock(int y, int x)
 {
-	// 게임 로직
+	// 게임 로직 
 	CheckLineComplete();
 
 	_currentBlock = new Block(y, x); // 0 4 -> 보드의 중상단
@@ -201,9 +201,10 @@ void Board::RotateBlock()
 
 void Board::CheckLineComplete()
 {
-	bool complete = false;
-	queue<int> q;
+	int y_start = 0;
+	int y_end = 0;
 
+	// 첫 라인 찾음
 	for (int y = 19; y >= 0; --y)
 	{
 		int cnt = 0;
@@ -212,41 +213,67 @@ void Board::CheckLineComplete()
 			if (_boardData[y][x] != 1)
 				++cnt;
 		}
-
 		if (cnt == 10)
 		{
-			q.push(y);
+			y_start = y;
+			y_end = y_start;
+			break;
 		}
 	}
 
-	while(!q.empty())
+	if (y_start == 0)
+		return;
+	
+	// 첫라인 이후부터 연속된 라인 찾음
+	for (int y = y_end - 1; y >= 0; --y)
 	{
-		int row = q.front();
-		q.pop();
-		EraseLine(row);
+		int cnt = 0; // 블럭 한줄은 10개
+		for (int x = 1; x < 11; ++x)
+		{
+			if (_boardData[y][x] != 1)
+				++cnt;
+		}
+
+		if (cnt == 10)
+		{
+			y_end = y;
+		}
+		else
+			break;
 	}
+
+	EraseLine(y_start, y_end);
+	
 }
 
-void Board::EraseLine(int row)
+void Board::EraseLine(int start, int end)
 {
-	// 라인 지우기
-	for (int x = 1; x < 11; ++x)
+	int mvDown = start - end + 1;
+
+	for (int y = start; y >= end; --y)
 	{
-		_boardData[row][x] = 1;
+		// 라인 지우기
+		for (int x = 1; x < 11; ++x)
+		{
+			_boardData[y][x] = 1;
+		}
 	}
 
+
 	// 데이터 밑으로 당기기
-	for (int y = row-1; y >= 0; --y)
+	for (int y = end - 1; y >= 0; --y)
 	{
 		for (int x = 1; x < 11; ++x)
 		{
-			if (_boardData[y + 1][x] == 1)
+			if (_boardData[y + mvDown][x] == 1)
 			{
-				_boardData[y + 1][x] = _boardData[y][x];
+				_boardData[y + mvDown][x] = _boardData[y][x];
 				_boardData[y][x] = 1;
 			}
 		}
 	}
+	
+	
 }
 
 
